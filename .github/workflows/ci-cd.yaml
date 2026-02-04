@@ -52,3 +52,15 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/todo-app:latest
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull chhavi0610/todo-app:latest
+            docker stop todo || true
+            docker rm todo || true
+            docker run -d -p 8000:8000 --name todo chhavi0610/todo-app:latest
