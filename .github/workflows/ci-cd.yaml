@@ -53,10 +53,4 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/todo-app:latest
 
-      - name: Deploy
-        run: |
-          docker pull chhavigamma/todo-app:latest
-          docker stop todo || true
-          docker rm todo || true
-          docker run -d -p 8000:8000 --name todo chhavigamma/todo-app:latest
-
+     
