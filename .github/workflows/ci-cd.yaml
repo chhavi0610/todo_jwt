@@ -51,4 +51,15 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/todo-jwt:latest1 
 
+  
+      - name: Deploy application
+        run: |
+          docker pull chhavigamma/todo-jwt:latest1
+          docker stop todo || true
+          docker rm todo || true
+          docker run -d -p 8000:8000 --restart unless-stopped --name todo chhavigamma/todo-jwt:latest1
+
+
+
+
      
