@@ -8,6 +8,8 @@ router = APIRouter()
 @router.post("/register")
 async def register(reg_usr: ReisterUser):
     conn = connection()
+    if conn is None:
+        print("db connection error")
     cur = conn.cursor()
 
     cur.execute( "INSERT INTO users (name, email, hashed_password) VALUES (%s,%s, %s)",
@@ -21,6 +23,8 @@ async def register(reg_usr: ReisterUser):
 @router.post("/login")
 async def login(user: LoginUser):
     conn = connection()
+    if conn is None:
+        print("db connection error")
     cur = conn.cursor()
     cur.execute( "SELECT id, hashed_password FROM users WHERE email=%s",(user.email,))
     u = cur.fetchone()
@@ -42,6 +46,8 @@ async def login(user: LoginUser):
 @router.post("/todo")
 async def add_task(todo: AddTask):
     conn = connection()
+    if conn is None:
+        print("db connection error")
     cur = conn.cursor()
 
     cur.execute("INSERT INTO task(title) VALUES (%s)",(todo.title,))
@@ -56,6 +62,8 @@ async def add_task(todo: AddTask):
 def get_tasks():
 
     conn = connection()
+    if conn is None:
+        print("db connection error")
     cur = conn.cursor()
 
     cur.execute("SELECT id, title FROM task")
@@ -78,6 +86,8 @@ def get_tasks():
 async def update_task(id: int, todo:AddTask):
 
     conn = connection()
+    if conn is None:
+        print("db connection error")
     cur = conn.cursor()
 
     cur.execute(
@@ -96,6 +106,9 @@ async def update_task(id: int, todo:AddTask):
 def delete_todo(id: int):
 
     conn = connection()
+    if conn is None:
+        print("db connection error")    
+        
     cur = conn.cursor()
 
     cur.execute("DELETE FROM task WHERE id=%s", (id,))
