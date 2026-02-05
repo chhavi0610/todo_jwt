@@ -52,12 +52,14 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/todo-jwt:latest1
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     steps:
       - name: Deploy application
         run: |
-          docker pull chhavigamma/todo-jwt:latest1
-          docker stop todo || true
-          docker rm todo || true
-          docker run -d -p 8000:8000 --restart unless-stopped --name todo chhavigamma/todo-jwt:latest1
+           docker pull chhavigamma/todo-jwt:latest1
+           docker stop todo || true
+           docker rm todo || true
+           docker run -d \-p 8000:8000 \--add-host=host.docker.internal:host-gateway \
+           -e DATABASE_URL=postgres://postgres:postgres@host.docker.internal:5432/todo \
+           --name todo \chhavigamma/todo-jwt:latest1
