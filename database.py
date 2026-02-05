@@ -1,6 +1,6 @@
 import psycopg2
 
-DATABASE_URL = "postgresql://postgres:Chhavi%40123@localhost:5432/todo"
+DATABASE_URL = "postgresql://postgres:Chhavi%40123@host.docker.internal:5432/todo"
 
 def connection():
         conn = psycopg2.connect(DATABASE_URL)
