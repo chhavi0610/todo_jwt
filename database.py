@@ -13,9 +13,9 @@ def get_connection():
 
 def create_table_user():
     conn = get_connection()
+    
     if conn is None:
         return
-
     cursor = conn.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
