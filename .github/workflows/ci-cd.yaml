@@ -59,6 +59,10 @@ jobs:
           docker rm todo || true
           docker run -d -p 8000:8000 --restart unless-stopped --name todo chhavigamma/todo-jwt:latest1
 
+      - name: Show app URL
+        run: echo "App is live at http://localhost:8000"
+
+
 
 
 
