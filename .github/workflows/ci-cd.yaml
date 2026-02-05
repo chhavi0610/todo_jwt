@@ -56,9 +56,9 @@ jobs:
     needs: build
     steps:
       - name: Deploy application
-        working-directory: TODO_APP
+        
         run: |
-           
+           pwd
            ls -la
            docker compose -f docker-compose.yml down
            docker compose -f docker-compose.yml pull
