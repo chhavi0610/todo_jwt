@@ -50,7 +50,7 @@ async def add_task(todo: AddTask):
         print("db connection error")
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO task(title) VALUES (%s)",(todo.title,))
+    cur.execute("INSERT INTO tasks(title) VALUES (%s)",(todo.title,))
     conn.commit()
     cur.close()
     conn.close()
@@ -66,7 +66,7 @@ def get_tasks():
         print("db connection error")
     cur = conn.cursor()
 
-    cur.execute("SELECT id, title FROM task")
+    cur.execute("SELECT id, title FROM tasks")
     rows = cur.fetchall()
 
     cur.close()
@@ -91,7 +91,7 @@ async def update_task(id: int, todo:AddTask):
     cur = conn.cursor()
 
     cur.execute(
-        "UPDATE task SET title=%s WHERE id=%s",
+        "UPDATE tasks SET title=%s WHERE id=%s",
         (todo.title, id)
     )
 
@@ -111,7 +111,7 @@ def delete_todo(id: int):
         
     cur = conn.cursor()
 
-    cur.execute("DELETE FROM task WHERE id=%s", (id,))
+    cur.execute("DELETE FROM tasks WHERE id=%s", (id,))
     conn.commit()
 
     cur.close()
