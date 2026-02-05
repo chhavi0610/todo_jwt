@@ -30,6 +30,10 @@ jobs:
           test -f main.py
           echo "main.py exists"
 
+      - name: Debug Docker username
+        run: |
+          echo "Docker user is: '${{ secrets.DOCKER_USERNAME }}'"
+
       - name: Set up Docker
         uses: docker/setup-buildx-action@v2
 
