@@ -11,6 +11,9 @@ def connection():
 
 def create_table_task():
     conn = connection()
+    if conn is None:
+        print("Skipping table creation: DB not available")
+        return
     cursor = conn.cursor()
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS task(
@@ -23,6 +26,9 @@ def create_table_task():
 
 def create_table_user():
     conn = connection()
+    if conn is None:
+        print("Skipping table creation: DB not available")
+        return
     cursor = conn.cursor()
 
     cursor.execute("""
