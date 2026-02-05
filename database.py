@@ -39,4 +39,3 @@ def create_table_user():
     print("users table ready")
 
 
-connection()
