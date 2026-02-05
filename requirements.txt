@@ -4,4 +4,4 @@ pydantic
 sqlalchemy 
 PyJwt
 passlib
-psycopg2
+psycopg2-binary
