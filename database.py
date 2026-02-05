@@ -4,11 +4,8 @@ import os
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 def connection():
-    try:
         return psycopg2.connect(DATABASE_URL)
-    except Exception as e:
-        print("Database connection failed:", e)
-        return None
+
 
 
 def create_table_user():
