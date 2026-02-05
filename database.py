@@ -3,7 +3,7 @@ import os
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-def get_connection():
+def connection():
     try:
         return psycopg2.connect(DATABASE_URL)
     except Exception as e:
@@ -12,7 +12,7 @@ def get_connection():
 
 
 def create_table_user():
-    conn = get_connection()
+    conn = connection()
     
     if conn is None:
         return
@@ -30,7 +30,7 @@ def create_table_user():
 
 
 def create_table_task():
-    conn = get_connection()
+    conn = connection()
     if conn is None:
         return
 

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from database import get_connection
+from database import connection
 from auth import hash_password, check_password, create_token
 from schema import ReisterUser, LoginUser, AddTask
 router = APIRouter()
@@ -7,7 +7,7 @@ router = APIRouter()
 
 @router.post("/register")
 async def register(reg_usr: ReisterUser):
-    conn = get_connection()
+    conn = connection()
     if conn is None:
         print("db connection error")
     cur = conn.cursor()
@@ -22,7 +22,7 @@ async def register(reg_usr: ReisterUser):
 
 @router.post("/login")
 async def login(user: LoginUser):
-    conn = get_connection()
+    conn = connection()
     if conn is None:
         print("db connection error")
     cur = conn.cursor()
@@ -45,7 +45,7 @@ async def login(user: LoginUser):
 
 @router.post("/todo")
 async def add_task(todo: AddTask):
-    conn = get_connection()
+    conn = connection()
     if conn is None:
         print("db connection error")
     cur = conn.cursor()
@@ -61,7 +61,7 @@ async def add_task(todo: AddTask):
 @router.get("/todo")
 def get_tasks():
 
-    conn = get_connection()
+    conn = connection()
     if conn is None:
         print("db connection error")
     cur = conn.cursor()
@@ -85,7 +85,7 @@ def get_tasks():
 @router.put("/todo/{id}")
 async def update_task(id: int, todo:AddTask):
 
-    conn = get_connection()
+    conn = connection()
     if conn is None:
         print("db connection error")
     cur = conn.cursor()
@@ -105,7 +105,7 @@ async def update_task(id: int, todo:AddTask):
 @router.delete("/todo/{id}")
 def delete_todo(id: int):
 
-    conn = get_connection()
+    conn = connection()
     if conn is None:
         print("db connection error")    
         
