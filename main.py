@@ -5,13 +5,9 @@ from routes import router
 app = FastAPI()
 app.include_router(router)
 
-@app.on_event("startup")
-def startup_event():
-    try:
-        create_table_user()
-        create_table_task()
-    except Exception as e:
-        print("DB not ready:", e)
+create_table_user()
+create_table_task()
+
 
 
 @app.get("/")
