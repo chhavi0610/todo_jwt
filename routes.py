@@ -26,7 +26,7 @@ async def login(user: LoginUser):
     if conn is None:
         print("db connection error")
     cur = conn.cursor()
-    cur.execute( "SELECT id, hashed_password FROM users WHERE email=%s",(user.email,))
+    cur.execute( "SELECT id, password FROM users WHERE email=%s",(user.email,))
     u = cur.fetchone()
 
     if not u:
