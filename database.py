@@ -3,8 +3,17 @@ import os
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-def connection():
-        return psycopg2.connect(DATABASE_URL)
+def get_connection():
+    if os.getenv("TESTING") == "true":
+        raise Exception("DB disabled during tests")
+
+    return psycopg2.connect(
+        host=os.getenv("DB_HOST", "postgres"),
+        port=5432,
+        user=os.getenv("DB_USER", "postgres"),
+        password=os.getenv("DB_PASSWORD", "postgres"),
+        dbname=os.getenv("DB_NAME", "postgres"),
+    )
 
 
 

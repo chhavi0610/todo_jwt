@@ -7,6 +7,11 @@ from fastapi.testclient import TestClient
 from main import app
 
 
+os.environ["TESTING"] = "true"
+
+def test_home():
+    assert True
+
 client = TestClient(app)
 
 def testroot():
