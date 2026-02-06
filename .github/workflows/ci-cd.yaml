@@ -59,12 +59,9 @@ jobs:
 
       - name: Deploy application
         run: |
-          echo "Current directory:"
+
           pwd
-
-          echo "Listing files:"
           ls -la
-
           docker compose down
           docker compose pull
           docker compose up -d --build

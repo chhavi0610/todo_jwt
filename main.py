@@ -7,8 +7,10 @@ app.include_router(router)
 
 @app.on_event("startup")
 def startup_event():
-    create_table_user()
-    create_table_task()
+    try:
+        create_table_user()
+    except Exception as e:
+        print("DB not ready:", e)
 
 
 @app.get("/")
