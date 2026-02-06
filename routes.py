@@ -12,7 +12,7 @@ async def register(reg_usr: ReisterUser):
         print("db connection error")
     cur = conn.cursor()
 
-    cur.execute( "INSERT INTO users (name, email, hashed_password) VALUES (%s,%s, %s)",
+    cur.execute( "INSERT INTO users (name, email,password) VALUES (%s,%s, %s)",
                 (reg_usr.name,reg_usr.email, hash_password(reg_usr.password)))
     conn.commit()
     cur.close()
