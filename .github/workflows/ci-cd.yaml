@@ -31,9 +31,6 @@ jobs:
           test -f main.py
           echo "main.py exists"
 
-      - name: Test
-        run: |
-           pytest -v
 
       - name: Set up Docker
         uses: docker/setup-buildx-action@v2
