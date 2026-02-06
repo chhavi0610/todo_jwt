@@ -8,6 +8,7 @@ router = APIRouter()
 @router.post("/register")
 async def register(reg_usr: RegisterUser):
     print("DATA RECEIVED 👉", reg_usr.model_dump())
+    print(reg_usr.model_dump())
     return {"ok": True}
     conn.commit()
     cur.close()
