@@ -1,14 +1,19 @@
+import os
 from fastapi import FastAPI
-from database import create_table_task, create_table_user
+from database import create_table_user, create_table_task
 from routes import router
 
 app = FastAPI()
 app.include_router(router)
 
-create_table_user()
-create_table_task()
+@app.on_event("startup")
+def startup_event():
+    if os.getenv("TESTING") == "true":
+        print("Skipping DB init in tests")
+        return
 
-
+    create_table_user()
+    create_table_task()
 
 @app.get("/")
 def home():
