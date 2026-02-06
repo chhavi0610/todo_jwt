@@ -16,7 +16,7 @@ def create_table_user():
     cursor = conn.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
-            id SERIAL PRIMARY KEY,
+            id INTEGER PRIMARY KEY,
             name TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL
@@ -34,7 +34,7 @@ def create_table_task():
 
     cursor = conn.cursor()
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS tasks ( id SERIAL PRIMARY KEY, title TEXT NOT NULL );""")
+        CREATE TABLE IF NOT EXISTS tasks ( id INTEGER PRIMARY KEY, title TEXT NOT NULL );""")
     conn.commit()
     cursor.close()
     conn.close()
