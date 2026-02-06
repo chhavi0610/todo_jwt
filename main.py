@@ -6,14 +6,7 @@ from routes import router
 app = FastAPI()
 app.include_router(router)
 
-@app.on_event("startup")
-def startup_event():
-    if os.getenv("TESTING") == "true":
-        print("Skipping DB init in tests")
-        return
 
-    create_table_user()
-    create_table_task()
 
 @app.get("/")
 def home():
