@@ -34,11 +34,7 @@ def create_table_task():
 
     cursor = conn.cursor()
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS tasks (
-            id SERIAL PRIMARY KEY,
-            title TEXT NOT NULL
-        );
-    """)
+        CREATE TABLE IF NOT EXISTS tasks ( id SERIAL PRIMARY KEY, title TEXT NOT NULL );""")
     conn.commit()
     cursor.close()
     conn.close()
