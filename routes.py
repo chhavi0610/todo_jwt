@@ -1,19 +1,14 @@
 from fastapi import APIRouter, HTTPException
 from database import connection
 from auth import hash_password, check_password, create_token
-from schema import ReisterUser, LoginUser, AddTask
+from schema import RegisterUser, LoginUser, AddTask
 router = APIRouter()
 
 
 @router.post("/register")
-async def register(reg_usr: ReisterUser):
-    conn = connection()
-    if conn is None:
-        print("db connection error")
-    cur = conn.cursor()
-
-    cur.execute( "INSERT INTO users(name, email, password) VALUES (%s,%s, %s)",
-                (reg_usr.name,reg_usr.email, hash_password(reg_usr.password)))
+async def register(reg_usr: RegisterUser):
+    print("DATA RECEIVED 👉", reg_usr.model_dump())
+    return {"ok": True}
     conn.commit()
     cur.close()
     conn.close()

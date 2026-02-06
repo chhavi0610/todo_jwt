@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class ReisterUser(BaseModel):
+class RegisterUser(BaseModel):
     name:str
     email:str
     password: str
@@ -11,4 +11,5 @@ class LoginUser(BaseModel):
 
 class AddTask(BaseModel):
     title: str
+
 
