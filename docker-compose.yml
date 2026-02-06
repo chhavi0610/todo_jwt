@@ -19,7 +19,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/todo
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/todo
     depends_on:
       - db
 
